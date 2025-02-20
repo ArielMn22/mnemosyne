@@ -8,6 +8,14 @@ const getMemories = async () => {
 
 }
 
+const getMemoryById = async (id) => {
+
+    const response = await fetch(`${API_URL}/memories/${id}`);
+    const memories = await response.json();
+    return memories;
+
+}
+
 const createMemory = async (memory) => {
 
     // parse memory.images with imageToBase64
@@ -59,4 +67,4 @@ function imageToBase64(file) {
 }
 
 
-export default { getMemories, createMemory,  imageToBase64, base64ToImage };
+export default { getMemories, getMemoryById, createMemory,  imageToBase64, base64ToImage };

@@ -38,15 +38,17 @@ const Home = () => {
 
                     {memories.map((memory, index) => (
                         
-                        <div key={index} className="memory-card">
+                        <a key={index} href={`/memory?id=${memory.id}`}>
+                            <div  className="memory-card">
 
-                            <div className="image" style={{ backgroundImage: `url(${memoriesService.base64ToImage(memory.images[0])})` }}></div>
+                                <div className="image" style={{ backgroundImage: `url(${memoriesService.base64ToImage(memory.images[0])})` }}></div>
 
-                            <h2>{memory.title}</h2>
+                                <h2>{memory.title}</h2>
 
-                            <p>{memory.description.substring(0, 45) + "..."}</p>
+                                <p>{memory.description.substring(0, 45) + "..."}</p>
 
-                        </div>
+                            </div>
+                        </a>
 
                     ))}
 

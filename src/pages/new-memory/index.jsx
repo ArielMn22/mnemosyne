@@ -45,7 +45,8 @@ const NewMemory = () => {
         let payload = {
             title: title,
             description: description,
-            images: images
+            images: images,
+            date: new Date().toISOString()
         };
 
         let response = await memoryService.createMemory(payload);
