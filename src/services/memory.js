@@ -8,6 +8,33 @@ const getMemories = async () => {
 
 }
 
+const createMemory = async (memory) => {
+
+    // parse memory.images with imageToBase64
+    const images = memory.images;
+    const base64Images = [];
+
+    for (let i = 0; i < images.length; i++) {
+
+        const base64 = await imageToBase64(images[i]);
+        base64Images.push(base64);
+
+    }
+
+    memory.images = base64Images;
+
+    const response = await fetch(`${API_URL}/memories`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(memory)
+    });
+
+    return response.json();
+
+}
+
 const base64ToImage = (base64, mimeType = 'image/png') => {
 
     // Decode the Base64 string
@@ -22,13 +49,14 @@ const base64ToImage = (base64, mimeType = 'image/png') => {
     return URL.createObjectURL(blob);
 }
 
-const imageToBase64 = (file) => {
+function imageToBase64(file) {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = () => resolve(reader.result);
-        reader.onerror = (error) => reject(error);
+        reader.onerror = error => reject(error);
     });
 }
 
-export default { getMemories, imageToBase64, base64ToImage };
+
+export default { getMemories, createMemory,  imageToBase64, base64ToImage };

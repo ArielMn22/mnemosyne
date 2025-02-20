@@ -40,7 +40,7 @@ const Home = () => {
                         
                         <div key={index} className="memory-card">
 
-                            <div className="image" style={{ backgroundImage: `url(${memoriesService.base64ToImage(memory.image)})` }}></div>
+                            <div className="image" style={{ backgroundImage: `url(${memoriesService.base64ToImage(memory.images[0])})` }}></div>
 
                             <h2>{memory.title}</h2>
 
