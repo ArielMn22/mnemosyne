@@ -44,7 +44,7 @@ const Home = () => {
 
                             <h2>{memory.title}</h2>
 
-                            <p>{memory.description}</p>
+                            <p>{memory.description.substring(0, 45) + "..."}</p>
 
                         </div>
 
