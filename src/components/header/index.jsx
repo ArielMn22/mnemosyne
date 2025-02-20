@@ -6,7 +6,9 @@ const Header = () => {
 
         <header className="app-header">
 
-            <img src={logo} alt="Mnemosyne Logo"></img>
+            <a href="/home">
+                <img src={logo} alt="Mnemosyne Logo"></img>
+            </a>
 
             <div className="links">
                 <a href="/home">HOME</a>
