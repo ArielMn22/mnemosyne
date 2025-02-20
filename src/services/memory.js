@@ -43,6 +43,16 @@ const createMemory = async (memory) => {
 
 }
 
+const deleteMemory = async (id) => {
+
+    const response = await fetch(`${API_URL}/memories/${id}`, {
+        method: "DELETE"
+    });
+
+    return response.json();
+
+}
+
 const base64ToImage = (base64, mimeType = 'image/png') => {
 
     // Decode the Base64 string
@@ -67,4 +77,4 @@ function imageToBase64(file) {
 }
 
 
-export default { getMemories, getMemoryById, createMemory,  imageToBase64, base64ToImage };
+export default { getMemories, getMemoryById, createMemory, deleteMemory, imageToBase64, base64ToImage };

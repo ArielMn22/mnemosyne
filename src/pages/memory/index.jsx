@@ -2,6 +2,7 @@ import "./memory.css";
 import Header from "../../components/header";
 import { useEffect, useState } from "react";
 import memoryService from "../../services/memory";
+import trash from "../../assets/icons/trash-solid.svg";
 
 const Memory = () => {
 
@@ -26,6 +27,23 @@ const Memory = () => {
 
     }
 
+    const onDeleteMemory = async () => {
+    
+        let confirm = window.confirm("Deseja realmente deletar esta memória?");
+
+        if (!confirm) return;
+
+        let response = await memoryService.deleteMemory(memory.id);
+
+        if (response) {
+
+            alert("Memory deleted successfully.");
+            window.location.href = "/home";
+        
+        }
+
+    }
+
     return (
         <>
 
@@ -38,6 +56,14 @@ const Memory = () => {
                     <>
 
                         <h1>{memory.title}</h1>
+
+                        <div className="buttons-container">
+
+                            <button onClick={() => onDeleteMemory()}>
+                                <img src={trash} alt="Delete memory." />
+                            </button>
+
+                        </div>
 
                         <div className="memory-item">
 
