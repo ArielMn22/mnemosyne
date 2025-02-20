@@ -1,7 +1,30 @@
 import "./home.css";
 import Header from "../../components/header";
+import { useEffect, useState } from "react";
+import memoriesService from "../../services/memory";
 
 const Home = () => {
+
+    const [memories, setMemories] = useState([]);
+
+    useEffect(() => {
+
+        getMemories();
+
+    }, []);
+
+    const getMemories = async () => {
+
+        const response = await memoriesService.getMemories();
+
+        if (response.length > 0) {
+
+            setMemories(response);
+
+        }
+
+    }
+
     return (
         <>
 
@@ -9,69 +32,23 @@ const Home = () => {
 
             <main className="app-main">
 
-                <h1>Meus momentos</h1>
+                <h1>Minhas memórias</h1>
 
                 <div className="memories-container">
 
-                    <div className="memory-card">
+                    {memories.map((memory, index) => (
+                        
+                        <div key={index} className="memory-card">
 
-                        <div className="image"></div>
+                            <div className="image" style={{ backgroundImage: `url(${memoriesService.base64ToImage(memory.image)})` }}></div>
 
-                        <h2>Meu afilhado!</h2>
+                            <h2>{memory.title}</h2>
 
-                        <p>Neste dia recebi a notiícia de ser padrinho...</p>
+                            <p>{memory.description}</p>
 
-                    </div>
+                        </div>
 
-                    <div className="memory-card">
-
-                        <div className="image"></div>
-
-                        <h2>Meu afilhado!</h2>
-
-                        <p>Neste dia recebi a notiícia de ser padrinho...</p>
-
-                    </div>
-
-                    <div className="memory-card">
-
-                        <div className="image"></div>
-
-                        <h2>Meu afilhado!</h2>
-
-                        <p>Neste dia recebi a notiícia de ser padrinho...</p>
-
-                    </div>
-
-                    <div className="memory-card">
-
-                        <div className="image"></div>
-
-                        <h2>Meu afilhado!</h2>
-
-                        <p>Neste dia recebi a notiícia de ser padrinho...</p>
-
-                    </div>
-
-                    <div className="memory-card">
-
-                        <div className="image"></div>
-
-                        <h2>Meu afilhado!</h2>
-
-                        <p>Neste dia recebi a notiícia de ser padrinho...</p>
-
-                    </div>
-
-                    <div className="memory-card">
-
-                        <div className="image"></div>
-
-                        <h2>Meu afilhado!</h2>
-
-                        <p>Neste dia recebi a notiícia de ser padrinho...</p>
-
-                    </div>
+                    ))}
 
                 </div>
 
@@ -82,7 +59,9 @@ const Home = () => {
                 <p>Mnemosyne - Ariel Paixão dos Santos</p>
 
             </footer>
+
         </>
+        
     );
 }
 
