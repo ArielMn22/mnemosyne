@@ -1,4 +1,5 @@
-const API_URL = "http://localhost:3000"; // Define a URL base da API
+const API_URL = "https://memories-json-server.vercel.app"; // Define a URL base da API
+// const API_URL = "http://localhost:3000"; // Define a URL base da API
 
 // Função assíncrona para buscar todas as memórias
 const getMemories = async () => {
