@@ -1,6 +1,6 @@
 # Mnemosyne
 
-Mnemosyne é um projeto desenvolvido com **React**, com o objetivo de gerenciar publicações de memórias inesquecíveis.
+Mnemosyne é um projeto desenvolvido com **React**, com o objetivo de gerenciar publicações de memórias inesquecíveis. Nele podemos listar, criar e deletar nossas publicações.
 
 A aplicação já está disponível online e pode ser acessada através do link abaixo.
 
